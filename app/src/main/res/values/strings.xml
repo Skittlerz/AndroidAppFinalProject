@@ -12,4 +12,6 @@
     <string name="address">Address:</string>
     <string name="required">Required</string>
     <string name="button_save">Save</string>
+    //Contact Details
+    <string name="details_title">Contact Details</string>
 </resources>

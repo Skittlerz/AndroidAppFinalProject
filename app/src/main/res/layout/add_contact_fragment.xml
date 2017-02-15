@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:text="@string/required"
+            android:hint="@string/required"
             android:ems="10"
             android:textColor="@color/white"
             android:id="@+id/etName" />
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:text="@string/button_save"
             android:id="@+id/btnAdd"
-            android:textColor="@color/button"
+            android:textColor="@color/darkGray"
             android:padding="5dp"
             android:layout_span="2"
             android:layout_gravity="center_horizontal"/>

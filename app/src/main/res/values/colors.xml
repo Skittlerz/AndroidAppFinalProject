@@ -6,5 +6,5 @@
     <color name="black">#000000</color>
     <color name="white">#F2F2F2</color>
     <color name="fragmentBackground">#c4c9ed</color>
-    <color name="button">#1a1a1a</color>
+    <color name="darkGray">#1a1a1a</color>
 </resources>
