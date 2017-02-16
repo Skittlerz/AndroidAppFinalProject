@@ -5,34 +5,18 @@
     android:layout_height="match_parent"
     android:stretchColumns="0,1">
 
+
     <TableRow
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/title_margin">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/add_title"
-            android:id="@+id/tvTitleAdd"
-            android:layout_span="2"
-            android:layout_gravity="center_horizontal"/>
-    </TableRow>
-
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-
-        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/name"
-            android:textColor="@color/white"
-            android:id="@+id/tvName" />
+            android:src="@drawable/person"
+            android:contentDescription="@string/name"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -40,7 +24,6 @@
             android:inputType="textPersonName"
             android:hint="@string/required"
             android:ems="10"
-            android:textColor="@color/white"
             android:id="@+id/etName" />
     </TableRow>
 
@@ -48,19 +31,17 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/phone"
-            android:id="@+id/tvPhone" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/phone"
+            android:contentDescription="@string/phone"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:textColor="@color/white"
+            android:hint="@string/phone"
             android:ems="10"
             android:id="@+id/etPhone" />
     </TableRow>
@@ -69,20 +50,18 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/email"
-            android:id="@+id/tvEmail" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/email"
+            android:contentDescription="@string/email"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:inputType="textEmailAddress"
             android:ems="10"
+            android:hint="@string/email"
             android:id="@+id/etEmail" />
     </TableRow>
 
@@ -90,26 +69,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/address"
-            android:id="@+id/tvAddress" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/place_marker"
+            android:contentDescription="@string/address"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPostalAddress"
+            android:hint="@string/address"
             android:ems="10"
-            android:textColor="@color/white"
             android:id="@+id/etAddress" />
     </TableRow>
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/title_margin">
 
         <Button
             android:layout_width="wrap_content"

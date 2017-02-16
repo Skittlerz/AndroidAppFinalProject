@@ -5,38 +5,21 @@
     android:layout_height="match_parent"
     android:stretchColumns="0,1">
 
+
     <TableRow
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/title_margin">
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:src="@drawable/person"
+            android:contentDescription="@string/name"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/details_title"
-            android:layout_span="2"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/tvTitleDetails" />
-    </TableRow>
-
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/name"
-            android:textColor="@color/white"
-            android:id="@+id/tvNameLabel" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/tvNameDetail" />
     </TableRow>
@@ -45,18 +28,15 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/phone"
-            android:id="@+id/tvPhoneLabel" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/phone"
+            android:contentDescription="@string/phone"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/tvPhoneDetail" />
     </TableRow>
@@ -65,18 +45,15 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/email"
-            android:id="@+id/tvEmailLabel" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/email"
+            android:contentDescription="@string/email"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/tvEmailDetail" />
     </TableRow>
@@ -85,17 +62,14 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/address"
-            android:id="@+id/tvAddressLabel" />
+            android:layout_width="wrap_content"
+            android:src="@drawable/place_marker"
+            android:contentDescription="@string/address"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/tvAddressDetail" />

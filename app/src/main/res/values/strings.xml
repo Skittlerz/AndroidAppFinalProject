@@ -5,12 +5,12 @@
     <string name="action_settings">Settings</string>
     <string name="action_quit">Quit</string>
     //Add Contact
-    <string name="add_title">Add Contact</string>
-    <string name="name">Name:</string>
-    <string name="email">Email:</string>
-    <string name="phone">Phone:</string>
-    <string name="address">Address:</string>
-    <string name="required">Required</string>
+    <string name="add_title">Add New Contact</string>
+    <string name="name">Name</string>
+    <string name="email">Email Address</string>
+    <string name="phone">Phone Number</string>
+    <string name="address">Postal Address</string>
+    <string name="required">Name (Required)</string>
     <string name="button_save">Save</string>
     //Contact Details
     <string name="details_title">Contact Details</string>
