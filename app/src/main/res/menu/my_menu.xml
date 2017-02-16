@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- "Add Contact", should appear as action button if possible -->
+    <group
+        android:id="@+id/item_group_add">
     <item
         android:id="@+id/action_add"
         android:icon="@drawable/add_user"
         android:title="@string/Add"
         app:showAsAction="always"/>
-
-    <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+    </group>
 
     <!-- Quit, should always be in the overflow -->
     <item android:id="@+id/action_quit"
         android:title="@string/action_quit"
-        app:showAsAction="never"/>
+        app:showAsAction="never"
+        android:orderInCategory="9999"/>
 
 </menu>

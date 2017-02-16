@@ -14,4 +14,7 @@
     <string name="button_save">Save</string>
     //Contact Details
     <string name="details_title">Contact Details</string>
+    <string name="delete_contact">Delete Contact</string>
+    //Edit Contact
+    <string name="edit_contact">Edit Contact</string>
 </resources>

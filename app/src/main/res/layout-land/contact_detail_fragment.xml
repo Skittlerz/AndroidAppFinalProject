@@ -75,5 +75,4 @@
             android:id="@+id/tvAddressDetail" />
     </TableRow>
 
-
 </TableLayout>

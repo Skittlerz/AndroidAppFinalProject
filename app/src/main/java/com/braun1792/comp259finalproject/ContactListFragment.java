@@ -27,9 +27,16 @@ public class ContactListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        //collect data for contacts
-        String [] contactData = {"Amanda","Buff","Chris","Michelle"};
-        List<String> contacts = new ArrayList<>(Arrays.asList(contactData));
+        //collect data for contacts from database
+        DBHelper database = new DBHelper(getActivity());
+        ArrayList<Contact> contactData = database.getAllContacts();
+
+        //get list of just names from contactData
+        //this is what will appear in the UI list of contacts
+        List<String> contacts = new ArrayList<>();
+        for(int i = 0; i < contactData.size();i++){
+            contacts.add(contactData.get(i).getName());
+        }
 
         ArrayAdapter<String> contactListAdapter = new ArrayAdapter<String>(getActivity(),
                 R.layout.contact_list_item, R.id.contact_list_item_textView,contacts);
@@ -52,7 +59,7 @@ public class ContactListFragment extends Fragment {
                 ContactDetailFragment cdf = new ContactDetailFragment();
                 //pass input values as a bundle
                 final Bundle bundle = new Bundle();
-                bundle.putInt("Position",position);
+                bundle.putInt("contactRecord",position);
                 cdf.setArguments(bundle);
                 //launch Contact Detail Fragment
                 fragmentTransaction.replace(R.id.fragmentContainer, cdf);
