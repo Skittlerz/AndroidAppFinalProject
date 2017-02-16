@@ -61,3 +61,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+.gradle/2.10/taskArtifacts/cache.properties.lock
+local.properties
+local.properties
