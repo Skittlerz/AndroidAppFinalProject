@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,10 +32,9 @@ public class ContactDetailFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         if(bundle != null){
-            //add 1 because database ids start at 1 not 0
-            contactRecord = bundle.getInt("contactRecord",0) + 1;
-            DBHelper database = new DBHelper(getActivity());
-            Contact selectedContact = database.getContact(contactRecord);
+            //take passed contact record and grab contact
+            contactRecord = bundle.getInt("contactRecord",0);
+            Contact selectedContact = ((MainActivity)getActivity()).getContactById(contactRecord);
             setDisplay(rootView,selectedContact);
         }
 
@@ -45,6 +45,7 @@ public class ContactDetailFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.cd_menu, menu);
+        menu.findItem(R.id.action_add).setVisible(false);
     }
 
     @Override
@@ -65,26 +66,10 @@ public class ContactDetailFragment extends Fragment {
         email.setText(contact.getEmail());
         address = (TextView) view.findViewById(R.id.tvAddressDetail);
         address.setText(contact.getAddress());
-
     }
 
     public int getContactRecord(){
         return contactRecord;
     }
 
-    public void launchEditContact(){
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        ContactUpdateFragment cuf = new ContactUpdateFragment();
-        //pass contactRecord as a bundle
-        final Bundle bundle = new Bundle();
-        bundle.putInt("contactRecord",contactRecord);
-        cuf.setArguments(bundle);
-        //launch Contact Update Fragment
-        fragmentTransaction.replace(R.id.fragmentContainer, cuf);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +28,12 @@ public class ContactListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        //collect data for contacts from database
-        DBHelper database = new DBHelper(getActivity());
-        ArrayList<Contact> contactData = database.getAllContacts();
+        ArrayList<String> contacts = new ArrayList<>();
 
-        //get list of just names from contactData
-        //this is what will appear in the UI list of contacts
-        List<String> contacts = new ArrayList<>();
-        for(int i = 0; i < contactData.size();i++){
-            contacts.add(contactData.get(i).getName());
+        Bundle bundle = this.getArguments();
+        if(bundle != null){
+            //get arraylist of contact names passed from main activity
+            contacts = bundle.getStringArrayList("contactList");
         }
 
         ArrayAdapter<String> contactListAdapter = new ArrayAdapter<String>(getActivity(),
@@ -59,7 +57,7 @@ public class ContactListFragment extends Fragment {
                 ContactDetailFragment cdf = new ContactDetailFragment();
                 //pass input values as a bundle
                 final Bundle bundle = new Bundle();
-                bundle.putInt("contactRecord",position);
+                bundle.putInt("contactRecord",((MainActivity)getActivity()).getContactId(position));
                 cdf.setArguments(bundle);
                 //launch Contact Detail Fragment
                 fragmentTransaction.replace(R.id.fragmentContainer, cdf);

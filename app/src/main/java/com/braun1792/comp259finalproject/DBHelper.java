@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -31,14 +32,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate (SQLiteDatabase database){
-        String sqlStatement = "CREATE TABLE "+ DATABASE_TABLE + " ("
-                + KEY_ID + " INTEGER PRIMARY KEY, "
-                + KEY_NAME + " TEXT, "
-                + KEY_PHONE + " TEXT, "
-                + KEY_EMAIL + " TEXT, "
-                + KEY_ADDRESS + " TEXT)";
-        database.execSQL(sqlStatement);
-        taskCount = 0;
+
+            String sqlStatement = "CREATE TABLE " + DATABASE_TABLE + " ("
+                    + KEY_ID + " INTEGER PRIMARY KEY, "
+                    + KEY_NAME + " TEXT, "
+                    + KEY_PHONE + " TEXT, "
+                    + KEY_EMAIL + " TEXT, "
+                    + KEY_ADDRESS + " TEXT)";
+            database.execSQL(sqlStatement);
+            taskCount = 0;
+    }
+
+    // This method ensures that taskCount is set to the MAX _id found in the contact table
+    // this avoids any pk conflicts when adding a new contact
+    @Override
+    public void onOpen (SQLiteDatabase db){
+        Cursor cursor = db.rawQuery("select MAX(_id) FROM " + DATABASE_TABLE, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        taskCount = cursor.getInt(0);
+        cursor.close();
     }
 
     @Override
@@ -53,6 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         //increment task count, which acts as the primary key id
         taskCount++;
+        Log.d("addContact", "addContact: taskCount ="+ taskCount);
         //add info for db entry
         values.put(KEY_ID,taskCount);
         values.put(KEY_NAME, contact.getName());
@@ -87,7 +102,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{KEY_ID,KEY_NAME,KEY_PHONE,KEY_EMAIL,KEY_ADDRESS},
                 KEY_ID + "=?",
                 new String[]{String.valueOf(id)},
-                null,null,null,null);
+                null,null,null);
 
         if (cursor != null){
             cursor.moveToFirst();
@@ -100,6 +115,32 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.getString(3),
                 cursor.getString(4));
 
+        cursor.close();
+        db.close();
+        return contact;
+    }
+
+    public Contact getContact(String phoneNumber){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                DATABASE_TABLE,
+                new String[]{KEY_ID,KEY_NAME,KEY_PHONE,KEY_EMAIL,KEY_ADDRESS},
+                KEY_PHONE + "=?",
+                new String[]{phoneNumber},
+                null,null,null);
+
+        if (cursor != null){
+            cursor.moveToFirst();
+        }
+
+        Contact contact = new Contact(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4));
+
+        cursor.close();
         db.close();
         return contact;
     }
@@ -117,6 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Contact> getAllContacts(){
+        //returns list of all contacts
         ArrayList<Contact> contactList = new ArrayList<>();
         String queryList = "SELECT _id,name,phone_number,email,address FROM " + DATABASE_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();

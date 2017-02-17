@@ -6,10 +6,13 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -27,6 +30,7 @@ public class AddContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //set app bar title
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.add_title);
+        setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.add_contact_fragment,container,false);
         //set up edit text
         name = (EditText) rootView.findViewById(R.id.etName);
@@ -37,6 +41,12 @@ public class AddContactFragment extends Fragment {
         return rootView;
     }
 
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // remove the add new contact icon
+        // already in the add new contact screen
+        menu.findItem(R.id.action_add).setVisible(false);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -45,22 +55,14 @@ public class AddContactFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.add_title);
     }
 
-    public void saveContact(View view){
-        //get contact info from edit texts
-        Contact contact = new Contact();
-        contact.setName(name.getText().toString());
-        contact.setPhone(phone.getText().toString());
-        contact.setEmail(email.getText().toString());
-        contact.setAddress(address.getText().toString());
-        //use DBHelper to add new contact to the database
-        DBHelper database = new DBHelper(getActivity());
-        database.addContact(contact);
-        //after the new contact is added return to ContactListFragment view
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ContactListFragment cf = new ContactListFragment();
-        fragmentTransaction.replace(R.id.fragmentContainer, cf);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+    public Contact getNewContact(){
+
+            //get contact info from edit texts
+            Contact contact = new Contact();
+            contact.setName(name.getText().toString());
+            contact.setPhone(phone.getText().toString());
+            contact.setEmail(email.getText().toString());
+            contact.setAddress(address.getText().toString());
+            return contact;
     }
 }
